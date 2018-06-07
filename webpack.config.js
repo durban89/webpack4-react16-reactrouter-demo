@@ -80,6 +80,13 @@ if (process.env.NODE_ENV === 'production') {
       contentBase: path.join(__dirname, 'dist'),
       compress: true,
       port: 8083,
+      historyApiFallback: {
+        rewrites: [{
+          from: /^\/$/,
+          to: './index.html',
+        },
+        ],
+      },
     },
   });
 }
