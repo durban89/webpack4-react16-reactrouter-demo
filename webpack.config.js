@@ -65,6 +65,9 @@ let config = {
   },
   resolve: {
     extensions: ['.js', '.jsx'], // 这里是必须要加的，不然默认的值加载['.js','.json']为后缀的文件
+    alias: {
+      Actions: path.resolve(__dirname, 'src/actions'),
+    },
   },
 };
 

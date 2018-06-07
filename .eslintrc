@@ -15,5 +15,8 @@
     ],
     "rules": {
         "no-underscore-dangle": 0
+    },
+    "globals": {
+        "Actions": true
     }
 }

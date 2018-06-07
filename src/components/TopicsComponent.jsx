@@ -28,6 +28,9 @@ class TopicsComponent extends React.Component {
           <li>
             <ALink to={`${match.url}/3`}>论题3</ALink>
           </li>
+          <li>
+            <ALink to={`${match.url}/4`}>论题4</ALink>
+          </li>
         </ul>
 
         <hr />

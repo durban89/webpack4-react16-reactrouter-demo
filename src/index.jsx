@@ -1,32 +1,31 @@
 import React from 'react';
+import { AppContainer } from 'react-hot-loader';
+import { createBrowserHistory } from 'history';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { connectRouter, ConnectedRouter, routerMiddleware } from 'connected-react-router';
 import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link as ALink,
-} from 'react-router-dom';
+import rootReducer from './reducers';
+import routes from './routes';
 
-import AppComponent from './components/AppComponent';
-import HomeComponent from './components/HomeComponent';
-import AboutComponent from './components/AboutComponent';
-import TopicsComponent from './components/TopicsComponent';
+const history = createBrowserHistory();
+const initialState = {};
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  connectRouter(history)(rootReducer),
+  initialState,
+  composeEnhancer(applyMiddleware(routerMiddleware(history))),
+);
 
 ReactDOM.render(
   (
-    <Router>
-      <AppComponent>
-        <ul>
-          <li><ALink to="/">首页</ALink></li>
-          <li><ALink to="/about">关于</ALink></li>
-          <li><ALink to="/topics">论题</ALink></li>
-        </ul>
-        <hr />
-
-        <Route exact path="/" component={HomeComponent} />
-        <Route path="/about" component={AboutComponent} />
-        <Route path="/topics" component={TopicsComponent} />
-      </AppComponent>
-    </Router>
+    <AppContainer>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          {routes}
+        </ConnectedRouter>
+      </Provider>
+    </AppContainer>
   ),
   document.getElementById('root'),
 );
