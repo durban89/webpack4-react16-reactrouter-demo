@@ -3,10 +3,10 @@ import { AppContainer } from 'react-hot-loader';
 import { createBrowserHistory } from 'history';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { connectRouter, ConnectedRouter, routerMiddleware } from 'connected-react-router';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
 import ReactDOM from 'react-dom';
+import App from './App';
 import rootReducer from './reducers';
-import routes from './routes';
 
 const history = createBrowserHistory();
 const initialState = {};
@@ -17,15 +17,34 @@ const store = createStore(
   composeEnhancer(applyMiddleware(routerMiddleware(history))),
 );
 
-ReactDOM.render(
-  (
-    <AppContainer>
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          {routes}
-        </ConnectedRouter>
-      </Provider>
-    </AppContainer>
-  ),
-  document.getElementById('root'),
-);
+const render = () => {
+  ReactDOM.render(
+    (
+      <AppContainer>
+        <Provider store={store}>
+          <App history={history} />
+        </Provider>
+      </AppContainer>
+    ),
+    document.getElementById('root'),
+  );
+};
+
+render();
+
+if (module.hot) {
+  module.hot.addStatusHandler((status) => {
+    console.log('status = ', status);
+  });
+
+  module.hot.accept('./App', () => {
+    // 这里是当前版本很重要的环节，不然的话react-hot-reload不起作用
+    require('./App').default;
+    render();
+  });
+
+  module.hot.accept('./reducers', () => {
+    store.replaceReducer(connectRouter(history)(rootReducer));
+    render();
+  });
+}

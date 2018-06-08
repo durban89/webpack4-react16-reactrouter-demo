@@ -4,7 +4,11 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 let config = {
   entry: {
-    app: ['./src/index.jsx'],
+    app: [
+      'webpack/hot/only-dev-server',
+      'react-hot-loader/patch',
+      './src/index.jsx',
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
@@ -26,7 +30,7 @@ let config = {
         path.resolve(__dirname, 'node_modules'),
       ],
       options: {
-        plugins: ['transform-async-to-generator', 'transform-strict-mode', 'transform-object-assign', 'transform-decorators-legacy'],
+        plugins: ['transform-async-to-generator', 'transform-strict-mode', 'transform-object-assign', 'transform-decorators-legacy', 'react-hot-loader/babel'],
         presets: ['es2015', 'react', 'stage-0'],
       },
     },
@@ -80,6 +84,7 @@ if (process.env.NODE_ENV === 'production') {
     mode: 'development',
     devtool: 'eval',
     devServer: {
+      hot: true,
       contentBase: path.join(__dirname, 'dist'),
       compress: true,
       port: 8083,

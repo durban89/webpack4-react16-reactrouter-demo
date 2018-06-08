@@ -21,7 +21,7 @@ class CounterComponent extends Component {
 
     return (
       <div>
-        <p>数值: {count}</p>
+        <p>数值【Look hot reloader】: {count}</p>
         <button onClick={this.props.doIncrement}>+</button>
         <button onClick={this.props.doDecrement}>-</button>
       </div>

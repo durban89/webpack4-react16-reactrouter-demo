@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx webpack",
     "build:package": "NODE_ENV=production npx webpack",
-    "start": "npx webpack-dev-server --open"
+    "start": "npx webpack-dev-server --open --hot"
   },
   "keywords": [],
   "author": "durban.zhang <durban.zhang@gmail.com>",
