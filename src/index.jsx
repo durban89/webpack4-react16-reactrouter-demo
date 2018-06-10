@@ -3,6 +3,7 @@ import { AppContainer } from 'react-hot-loader';
 import { createBrowserHistory } from 'history';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { createLogger } from 'redux-logger';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -10,11 +11,17 @@ import rootReducer from './reducers';
 
 const history = createBrowserHistory();
 const initialState = {};
+const middleware = [];
+if (typeof __DEV__ !== 'undefined') {
+  middleware.push(createLogger());
+}
+
+middleware.push(routerMiddleware(history));
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   connectRouter(history)(rootReducer),
   initialState,
-  composeEnhancer(applyMiddleware(routerMiddleware(history))),
+  composeEnhancer(applyMiddleware(...middleware)),
 );
 
 const render = () => {

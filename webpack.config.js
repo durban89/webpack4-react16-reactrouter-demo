@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
@@ -80,6 +81,13 @@ if (process.env.NODE_ENV === 'production') {
     mode: 'production',
   });
 } else {
+  const {
+    plugins,
+  } = config;
+  plugins.push(new webpack.DefinePlugin({
+    'global.GENTLY': false,
+    __DEV__: true,
+  }));
   config = Object.assign({}, config, {
     mode: 'development',
     devtool: 'eval',
@@ -96,8 +104,8 @@ if (process.env.NODE_ENV === 'production') {
         ],
       },
     },
+    plugins,
   });
 }
-
 
 module.exports = config;
