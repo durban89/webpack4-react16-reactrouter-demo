@@ -23,6 +23,7 @@ let config = {
     filename: '[name].bundle.js',
     chunkFilename: '[chunkhash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   module: {
     rules: [{
@@ -101,8 +102,7 @@ if (process.env.NODE_ENV === 'production') {
         rewrites: [{
           from: /^\/$/,
           to: './index.html',
-        },
-        ],
+        }],
       },
     },
     plugins,
