@@ -1,4 +1,5 @@
 import React from 'react';
+import Loadable from 'react-loadable';
 import {
   BrowserRouter as Router,
   Route,
@@ -7,9 +8,7 @@ import {
 
 import AppComponent from './components/AppComponent';
 import HomeComponent from './components/HomeComponent';
-import AboutComponent from './components/AboutComponent';
-import TopicsComponent from './components/TopicsComponent';
-import CounterComponent from './components/CounterComponent';
+import LoadingComponent from './components/LoadingComponent';
 
 const routes = (
   <div>
@@ -24,9 +23,27 @@ const routes = (
         <hr />
 
         <Route exact path="/" component={HomeComponent} />
-        <Route path="/about" component={AboutComponent} />
-        <Route path="/topics" component={TopicsComponent} />
-        <Route path="/counter" component={CounterComponent} />
+        <Route
+          path="/about"
+          component={Loadable({
+            loader: () => import('./components/AboutComponent'),
+            loading: LoadingComponent,
+          })}
+        />
+        <Route
+          path="/topics"
+          component={Loadable({
+            loader: () => import('./components/TopicsComponent'),
+            loading: LoadingComponent,
+          })}
+        />
+        <Route
+          path="/counter"
+          component={Loadable({
+            loader: () => import('./components/CounterComponent'),
+            loading: LoadingComponent,
+          })}
+        />
       </AppComponent>
     </Router>
   </div>
