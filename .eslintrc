@@ -14,9 +14,14 @@
         "airbnb"
     ],
     "rules": {
-        "no-underscore-dangle": 0
+        "no-underscore-dangle": 0,
+        "import/no-extraneous-dependencies": ["error", {
+            "devDependencies": true
+        }]
+
     },
     "globals": {
         "Actions": true
-    }
+    },
+
 }
