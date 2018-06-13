@@ -1,0 +1,18 @@
+.btn {
+  width: 60px;
+  height: 30px;
+  background: #673ab7;
+  font-size: 16px;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  color: #fff;
+}
+
+.btn:focus {
+  background: #3d51b5;
+}
+
+.btn.first-child {
+  margin-right: 5px;
+}

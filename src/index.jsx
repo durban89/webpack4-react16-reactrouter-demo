@@ -8,6 +8,7 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import ReactDOM from 'react-dom';
 import App from './App';
 import rootReducer from './reducers';
+import './css/main.css';
 
 const history = createBrowserHistory();
 const initialState = {};

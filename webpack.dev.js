@@ -2,6 +2,7 @@ const merge = require('webpack-merge');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 const common = require('./webpack.common');
 
@@ -41,8 +42,10 @@ module.exports = merge(common, {
       template: './index.html', // 模板文件
     }),
     new webpack.DefinePlugin({
-      'global.GENTLY': false,
-      __DEV__: true,
+      'process.env.NODE_ENV': JSON.stringify('development'),
+    }),
+    new ExtractTextPlugin({
+      filename: '[name].bundle.css',
     }),
   ],
 });
