@@ -12,7 +12,7 @@ import rootReducer from './reducers';
 const history = createBrowserHistory();
 const initialState = {};
 const middleware = [];
-if (typeof __DEV__ !== 'undefined') {
+if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger());
 }
 
