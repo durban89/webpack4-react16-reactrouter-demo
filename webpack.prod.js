@@ -9,6 +9,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
 const WebpackBundleAnalyzer = require('webpack-bundle-analyzer');
 const common = require('./webpack.common');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 const {
   BundleAnalyzerPlugin,
@@ -52,7 +53,12 @@ module.exports = merge(common, {
     }),
     new ManifestPlugin(),
     new webpack.NamedModulesPlugin(),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
+    new WorkboxWebpackPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+      exclude: [/\.map$/],
+    }),
   ],
   optimization: {
     splitChunks: {
