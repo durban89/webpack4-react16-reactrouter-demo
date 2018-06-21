@@ -7,7 +7,12 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
+const WebpackBundleAnalyzer = require('webpack-bundle-analyzer');
 const common = require('./webpack.common');
+
+const {
+  BundleAnalyzerPlugin,
+} = WebpackBundleAnalyzer;
 
 module.exports = merge(common, {
   mode: 'production',
@@ -47,6 +52,7 @@ module.exports = merge(common, {
     }),
     new ManifestPlugin(),
     new webpack.NamedModulesPlugin(),
+    new BundleAnalyzerPlugin(),
   ],
   optimization: {
     splitChunks: {
