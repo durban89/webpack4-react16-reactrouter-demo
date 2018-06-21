@@ -6,6 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
 const common = require('./webpack.common');
 
 module.exports = merge(common, {
@@ -34,6 +35,7 @@ module.exports = merge(common, {
       filename: './index.html', // 调用的文件
       template: './index.html', // 模板文件
     }),
+    new InlineManifestWebpackPlugin(),
     new UglifyJsPlugin({
       sourceMap: true,
     }),
@@ -68,6 +70,9 @@ module.exports = merge(common, {
           reuseExistingChunk: true, // 可设置是否重用该chunk（查看源码没有发现默认值）
         },
       },
+    },
+    runtimeChunk: {
+      name: 'manifest',
     },
   },
 });
