@@ -13,7 +13,7 @@ const initCityDatabase = () => new Promise((resolve, reject) => {
 
   try {
     setTimeout(() => {
-      console.log('onetime -> init time = ', time1);
+      // console.log('onetime -> init time = ', time1);
       time1 += 1;
       citys.push('natasha1');
       citys.push('natasha2');
@@ -29,7 +29,7 @@ const initCityDatabase = () => new Promise((resolve, reject) => {
 const clearCityDatabase = () => new Promise((resolve, reject) => {
   let promise;
   try {
-    console.log('onetime -> clear time = ', time2);
+    // console.log('onetime -> clear time = ', time2);
     time2 += 1;
     setTimeout(() => {
       citys = [];
