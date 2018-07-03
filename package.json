@@ -14,6 +14,7 @@
   "author": "durban.zhang <durban.zhang@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "connected-react-router": "^4.3.0",
     "enzyme-to-json": "^3.3.4",
     "history": "^4.7.2",
