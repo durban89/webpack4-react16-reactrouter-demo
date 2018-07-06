@@ -20,3 +20,8 @@ console.log(result);
 // > [11]
 console.log(filterTestFn.mock.calls);
 // > [ [11], [12] ]
+
+test('do test', () => {
+  expect(true).toBe(true);
+});
+

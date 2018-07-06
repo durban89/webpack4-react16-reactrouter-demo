@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`正确的渲染 1`] = `
+<a
+  className="normal"
+  href="https://www.walkerfree.com"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  Walkerfree
+</a>
+`;
