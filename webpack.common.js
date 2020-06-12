@@ -27,7 +27,7 @@ module.exports = {
       ],
       options: {
         plugins: ['transform-async-to-generator', 'transform-strict-mode', 'transform-object-assign', 'transform-decorators-legacy', 'react-hot-loader/babel'],
-        presets: ['es2015', 'react', 'stage-0'],
+        presets: ['env', 'react', 'stage-0'],
       },
     },
     {
